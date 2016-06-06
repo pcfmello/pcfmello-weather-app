@@ -1,0 +1,58 @@
+<section id="home-sec">
+    <div class="overlay text-center">
+        <h1 >{{slogan1}}</h1>
+        <hr class="hr-set"/>
+
+        <p>{{slogan2}}</p>
+    </div>
+</section>
+
+<section id="search-domain" >
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="text" class="form-control input-cls" ng-model="city" placeholder="example: 'New York'" autofocus/>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-info btn-lg btn-set" ng-click="search(city)" ng-disabled="!city">{{textButton}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<div class="resultados">
+    <section class="current-weather" ng-if="currentWeather">
+        <h2>{{currentWeather.dt * 1000 | date:'MMMM dd, yyyy hh:mm' : 'UTC-3'}}</h2>
+        <div class="panel panel-default">
+          <div class="panel-body">            
+            
+            <div class="row">
+              <div class="col-md-9">
+                  <h1>{{currentWeather.name}}, {{currentWeather.sys.country}}</h1>
+              </div>
+              <div class="col-md-3 text-right">
+                <strong><h1>{{currentWeather.main.temp}}<i class="wi wi-celsius"></i></h1></strong>
+              </div>              
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <h2><img src="http://openweathermap.org/img/w/{{currentWeather.weather[0].icon}}.png" alt="{{currentWeather.weather[0].description}}"/>
+                {{currentWeather.weather[0].main}}</h2>
+              </div>
+              <div class="col-md-3"><h2><i class="wi wi-thermometer-exterior"></i>: {{currentWeather.main.temp_min}}<i class="wi wi-celsius"></i></h2></div>
+              <div class="col-md-3"><h2><i class="wi wi-thermometer"></i>: {{currentWeather.main.temp_max}}<i class="wi wi-celsius"></i><h2></div>
+              <div class="col-md-3"><h2><i class="wi wi-humidity"></i>: {{currentWeather.main.humidity}}%</h2></div>              
+            </div>
+            <div class="row">
+            <div class="col-md-3"><h2><i class="wi wi-strong-wind"></i>: {{currentWeather.wind.speed}} m/s</h2></div>
+              <div class="col-md-3"><h2><i class="wi wi-sunrise"></i>: {{currentWeather.sys.sunrise * 1000 | date:'hh:mm'}} am</h2></div>
+              <div class="col-md-3"><h2><i class="wi wi-sunset"></i>: {{currentWeather.sys.sunset * 1000 | date:'hh:mm'}} pm</h2></div>
+              <div class="col-md-3"><a href="http://openweathermap.org">OpenWeatherMap</a></div>                       
+            </div>
+          </div>
+        </div>
+    </section>
+</div>
